@@ -1,0 +1,12 @@
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "9fD-0m-DEK"; */
+"9fD-0m-DEK.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Retry"; ObjectID = "EYR-oZ-b5o"; */
+"EYR-oZ-b5o.normalTitle" = "Retry";
+
+/* Class = "UIButton"; normalTitle = "Left"; ObjectID = "LmY-2n-nF6"; */
+"LmY-2n-nF6.normalTitle" = "Left";
+
+/* Class = "UIButton"; normalTitle = "Right"; ObjectID = "z0b-qW-t6A"; */
+"z0b-qW-t6A.normalTitle" = "Right";

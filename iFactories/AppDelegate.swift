@@ -7,6 +7,28 @@
 //
 
 import UIKit
+import Localize_Swift
+
+public extension UIView {
+    
+    func shake(count : Float? = nil,for duration : TimeInterval? = nil,withTranslation translation : Float? = nil) {
+        
+        // You can change these values, so that you won't have to write a long function
+        let defaultRepeatCount = 4
+        let defaultTotalDuration = 0.5
+        let defaultTranslation = -5
+        
+        let animation : CABasicAnimation = CABasicAnimation(keyPath: "transform.translation.x")
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        
+        animation.repeatCount = count ?? Float(defaultRepeatCount)
+        animation.duration = (duration ?? defaultTotalDuration)/TimeInterval(animation.repeatCount)
+        animation.autoreverses = true
+        animation.byValue = translation ?? defaultTranslation
+        layer.add(animation, forKey: "shake")
+        
+    }
+}
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +38,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        return true
+        let langStr = Locale.current.languageCode
+        if (langStr == "fa" || langStr == "ar")
+        {
+            MainInfo.Device_IsRTL = true
+        }
+//        Localize.setCurrentLanguage(langStr!)
+        
+//        let pl = UserDefaults.standard.string(forKey: "lang")
+        var pl = Preference.getLanguage()
+        if (pl == nil) // its first time app executes
+        {
+            MainInfo.IsRTL = MainInfo.Device_IsRTL
+//            UF.setLang(lang: langStr!)
+            Preference.setLanguage(langStr!)
+            pl = langStr!
+        }
+        
+        if (pl == "fa")
+        {
+            UF.doArabic()
+            MainInfo.language = Settings.Language.Persian
+            MainInfo.IsRTL = true
+            UIView.appearance().semanticContentAttribute = .forceRightToLeft
+            Localize.setCurrentLanguage("fa")
+        } else if (pl == "en")
+        {
+            MainInfo.language = Settings.Language.English
+            MainInfo.IsRTL = false
+            UIView.appearance().semanticContentAttribute = .forceLeftToRight
+            Localize.setCurrentLanguage("en")
+        }else if (pl == "ar")
+        {
+            MainInfo.language = Settings.Language.Arabic
+            MainInfo.IsRTL = true
+            UIView.appearance().semanticContentAttribute = .forceRightToLeft
+            Localize.setCurrentLanguage("ar")
+        }else if (pl == "ru")
+        {
+            MainInfo.language = Settings.Language.Russion
+            MainInfo.IsRTL = false
+            UIView.appearance().semanticContentAttribute = .forceLeftToRight
+            Localize.setCurrentLanguage("ru")
+        }
+        
+        
+       
+        
+         return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

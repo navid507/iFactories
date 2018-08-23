@@ -1,0 +1,49 @@
+/* 
+  Localizable.strings
+  iFactories
+
+  Created by navid einackchi on 7/4/18.
+  Copyright © 2018 sanabadai. All rights reserved.
+*/
+"Language Select" = "انتخاب زبان";
+"Factories" = "کارخانه ها";
+"Profile" = "پروفایل";
+"Orders" = "سفارش ها";
+"Languages" = "زبان";
+"Search" = "جستجو";
+"MEETING_Service" = "درخواست ملاقات";
+"NAMAYNDE_Service" = "درخواست نمایندگی";
+"MOMAYEZ_Service" = "درخواست ممیزی";
+"MOSHAVERE_Service" = "درخواست مشاوره";
+"BAZDID_GROUP_Service" = "درخواست بازدید گروهی";
+"SADERAT_Service" = "درخواست صادرات";
+"SARMAYEGOZARY_Service" = "درخواست سرمایه گذاری";
+"HOZOOR_Service" = "درخواست حضور در ایران";
+"TOOR_Service" = "درخواست تور نمایشگاهی";
+"iServices" = "خدمت مورد نظر خود را انتخاب نمایید.";
+"What else do you want" = "خدمت دیگری نیاز دارید، اینجا بنویسید";
+"Send" = "ارسال";
+"Problem!"="خطا!";
+"xxx" = "xxx";
+"Your device has lost connection to the server. Check that you have a valid internet connection."="ارتباط شما با سرور قطع شده است. لطفا ارتباط را چک نمایید.";
+"Register" = "ثبت نام";
+"Verify Code" = "تایید کد";
+"Please Enter Your Verify Code" = "لطفا کد دریافتی را وارد نمایید.";
+"Please Enter Your Phone Number" = "لطفا شماره همراه خود را وارد نمایید.";
+"Send" = "ارسال";
+"Change Phone Number" = "تغییر شماره همراه";
+"Invalid Phone Number" = "شماره همراه نامعتبر";
+"Enter Verify Code" = "ورود کد تایید";
+"Edit Profile" = "ویرایش پروفایل";
+"Name" = "نام";
+"Please Enter Email" = "لطفا ایمیل را وارد نمایید.";
+"Company" = "کارخانه";
+"Position" = "موقعیت";
+"Phone" = "تلفن";
+"Country" = "کشور";
+"Email" = "ایمیل";
+"Please Enter Company" = "لطفا نام شرکت را وارد نمایید.";
+"Please Enter Position" = "لطفا موقعیت خود در شرکت را مشخص نمایید.";
+"Please Enter Phone" = "لطفا شماره تلفن خود را وارد نمایید.";
+"Please Enter Email" = "لطفا ایمیل خود را وارد نمایید.";
+"Please Enter Country" = "لطفا کشور خود را وارد نمایید.";

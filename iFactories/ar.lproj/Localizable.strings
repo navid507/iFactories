@@ -1,0 +1,50 @@
+/* 
+  Localizable.strings
+  iFactories
+
+  Created by navid einackchi on 7/4/18.
+  Copyright © 2018 sanabadai. All rights reserved.
+*/
+"Language Select" = "الانتخاباتیه للزبان";
+"Factories" = "Factories";
+"Profile" = "Profile";
+"Orders" = "Orders";
+"Languages" = "Languages";
+"Search" = "Search";
+
+"MEETING_Service" = "Request For Meeting";
+"NAMAYNDE_Service" = "Request For ";
+"MOMAYEZ_Service" = "Request For";
+"MOSHAVERE_Service" = "Request For Consultation";
+"BAZDID_GROUP_Service" = "Request For Group Meeting";
+"SADERAT_Service" = "Request For Export";
+"SARMAYEGOZARY_Service" = "Request For Investigation";
+"HOZOOR_Service" = "Request For Physical Attendance";
+"TOOR_Service" = "Request For Tour";
+"iServices" = "Select The Required Services";
+"What else do you want" = "Write What Else you need here:";
+"Send" = "Send";
+"Problem!"="Problem!";
+"Your device has lost connection to the server. Check that you have a valid internet connection." = "Your device has lost connection to the server. Check that you have a valid internet connection.";
+"Register" = "Register";
+"Verify Code" = "Verify Code";
+"Please Enter Your Verify Code" = "Please Enter Your Verify Code";
+"Please Enter Your Phone Number" = "Please Enter Your Phone Number";
+"Send" = "Send";
+"Change Phone Number" = "Change Phone Number";
+"Invalid Phone Number" = "Invalid Phone Number";
+"Enter Verify Code" = "Enter Verify Code";
+"Edit Profile" = "Edit Profile";
+"Name" = "Name";
+"Please Enter Email" = "Please Enter Email";
+"Company" = "Company";
+"Position" = "Position";
+"Phone" = "Phone";
+"Country" = "Country";
+"Email" = "Email";
+"Please Enter Company" = "Please Enter Company";
+"Please Enter Position" = "Please Enter Position";
+"Please Enter Phone" = "Please Enter Phone";
+"Please Enter Email" = "Please Enter Email";
+"Please Enter Country" = "Please Enter Country";
+
