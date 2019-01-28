@@ -65,7 +65,9 @@ class ProductsCollectionViewController: UICollectionViewController {
 //            cell.porductNameLB.text = prd.name
         }
         // Configure the cell
-    
+//        UF.changeAllFonts(parent: self.view, lang: MainInfo.language)
+        cell.porductNameLB.font = UF.getFont(tag: cell.porductNameLB.tag, lang: MainInfo.language)
+        
         return cell
     }
 

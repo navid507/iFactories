@@ -35,6 +35,7 @@ class Shop {
     
     public var guilds = NSMutableArray()
     public var others = NSMutableArray()
+    var gallery = [String]()
     
     static func parseShop(obj: JSON) -> Shop {
         
@@ -62,6 +63,12 @@ class Shop {
         cat.email = obj["email"].stringValue
         cat.web = obj["web"].stringValue
         
+        let ads = obj["gallery"].arrayValue
+        for s in ads
+        {
+            let ser = s.stringValue
+            cat.gallery.append(ser)
+        }
     
         let guildJSA = obj["guild"].arrayValue
         for s in guildJSA

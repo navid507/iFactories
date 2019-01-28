@@ -17,7 +17,8 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var loadingPB: UIActivityIndicatorView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        UF.changeAllFonts(parent: self.view, lang: MainInfo.language)
+        
         // Do any additional setup after loading the view.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ServicesViewController.dismissKeyboard))
         
@@ -27,6 +28,16 @@ class SearchViewController: UIViewController {
         //        self.navigationController?.navigationBar.isHidden = true
         
         
+        if (MainInfo.IsRTL)
+        {
+            backBT.transform = CGAffineTransform(rotationAngle: CGFloat.pi )
+        }
+        
+    }
+    @IBOutlet weak var backBT: UIButton!
+    
+    @IBAction func doBack(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     @objc func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
@@ -83,9 +94,7 @@ class SearchViewController: UIViewController {
             
             if let data = response.data, let responseString = String(data: data, encoding: .utf8) {
                 print(responseString)
-                
-                
-                
+             
             }
         case .success(let responseObject):
             if let data = response.data, let responseString = String(data: data, encoding: .utf8) {

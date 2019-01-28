@@ -64,30 +64,36 @@ class FiltersTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FilterTableViewCell", for: indexPath) as! FilterTableViewCell
 
         var title: String = ""
+        var image: String = ""
         var selected: Bool = false
         // Configure the cell...
         
-            (title, selected) = getElement(sec: indexPath)
+        
+        (title, selected, image) = getElement(sec: indexPath)
         
         ////////////
-        cell.gidmDL.setTitle(title, for: .normal)
+        cell.nameLB.text = title
+        cell.nameLB.font = UF.getFont(tag: cell.nameLB.tag, lang: MainInfo.language)
+        let url = URL(string: image)
+        cell.imageLB.kf.setImage(with: url)
+        
         cell.gidmDL.isSelected = selected
-    cell.cellIP = indexPath
+        cell.cellIP = indexPath
         cell.gidmDL.addTarget(self, action: #selector(FiltersTableViewController.doSelectService), for: .touchUpInside)
-        if (MainInfo.IsRTL)
-        {
-            cell.gidmDL.contentHorizontalAlignment = .right
-            cell.gidmDL.titleLabel?.font = UIFont(name: "B Roya", size: 16)
-//            cell.gidmDL.isIconOnRight = true
-        }else
-        {
-            cell.gidmDL.contentHorizontalAlignment = .left
-            cell.gidmDL.titleLabel?.font = UIFont(name: "System", size: 14)
-//            cell.gidmDL.isIconOnRight = false
-            
-        }
-        cell.gidmDL.addTarget(self, action: #selector(FiltersTableViewController.doSelectService), for: .touchUpInside)
-        ////////
+//        if (MainInfo.IsRTL)
+//        {
+//            cell.gidmDL.contentHorizontalAlignment = .right
+//            cell.gidmDL.titleLabel?.font = UF.getFont(tag: 16, lang: MainInfo.language)
+//            //            cell.gidmDL.isIconOnRight = true
+//        }else
+//        {
+//            cell.gidmDL.contentHorizontalAlignment = .left
+//            cell.gidmDL.titleLabel?.font = UF.getFont(tag: 16, lang: MainInfo.language)
+//            //            cell.gidmDL.isIconOnRight = false
+//
+//        }
+//        cell.gidmDL.addTarget(self, action: #selector(FiltersTableViewController.doSelectService), for: .touchUpInside)
+//        ////////
         return cell
     }
     @objc func doSelectService(_ sender: DLRadioButton) {
@@ -144,44 +150,44 @@ class FiltersTableViewController: UITableViewController {
         self.tableView.reloadData()
         //als[sender.tag]
     }
-    func getElement(sec: IndexPath)-> (String, Bool)
+    func getElement(sec: IndexPath)-> (String, Bool, String)
     {
         switch sec.section {
         case Settings.OthersType.Guild:
             if let cg = guilds[sec.row] as? Guild
             {
-                return (cg.name, cg.selected)
+                return (cg.name, cg.selected, cg.image)
             }
             break
         case Settings.OthersType.Standards:
             if let cg = standard[sec.row] as? GDIM
             {
-                return (cg.name, cg.selected)
+                return (cg.name, cg.selected, cg.image)
             }
             break
         case Settings.OthersType.DWay:
             if let cg = dway[sec.row] as? GDIM
             {
-                return (cg.name, cg.selected)
+                return (cg.name, cg.selected, cg.image)
             }
             break
         case Settings.OthersType.Geo:
             if let cg = geo[sec.row] as? GDIM
             {
-                return (cg.name, cg.selected)
+                return (cg.name, cg.selected, cg.image)
             }
             break
         case Settings.OthersType.Currency:
             if let cg = currency[sec.row] as? GDIM
             {
-                return (cg.name, cg.selected)
+                return (cg.name, cg.selected, cg.image)
             }
             break
         default:
             break
             
         }
-        return ("", false)
+        return ("", false,"")
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

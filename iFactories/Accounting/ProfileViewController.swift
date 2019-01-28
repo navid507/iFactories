@@ -25,9 +25,17 @@ class ProfileViewController: UIViewController {
         
         
         
-        // Do any additional setup after loading the view.
+        if (MainInfo.IsRTL)
+        {
+            backBT.transform = CGAffineTransform(rotationAngle: CGFloat.pi )
+        }
+        
     }
+    @IBOutlet weak var backBT: UIButton!
     
+    @IBAction func doBack(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
     override func viewWillAppear(_ animated: Bool) {
         //      setLang()
         if MainInfo.userProfile != nil

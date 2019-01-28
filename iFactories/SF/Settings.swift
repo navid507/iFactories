@@ -41,6 +41,7 @@ class Settings {
         public static let root = "http://www.ineeeds.ir/"
         public static let base = root + "ws/"
         public static let Guild = base + "guild.php"
+        public static let Ads = base + "ads_guild.php"
         
         
         public static let requests = base + "request.php"

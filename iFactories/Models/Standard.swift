@@ -11,6 +11,7 @@ import SwiftyJSON
 
 class GDIM {
     var name: String = ""
+    var image: String = ""
     var description: String = ""
     var id: Int = -1
     var type: Int = -1
@@ -21,6 +22,7 @@ class GDIM {
         let cat = GDIM()
         cat.id = obj["id"].intValue
         cat.name = obj["title"].stringValue
+        cat.image = obj["image"].stringValue
 //        cat.description = obj["description"].stringValue
         
         let typeID = obj["type"].stringValue

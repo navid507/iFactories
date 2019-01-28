@@ -45,24 +45,17 @@ class GuildTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if (indexPath.row % 2 == 0)
-        {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GuildTableViewCellEven", for: indexPath) as! GuildTableViewCell
-       let ser = myGuilds[indexPath.row]
-            cell.backIV.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
-            
-            cell.titleLB.text = ser.name
+        
+     //  UF.changeAllFonts(parent: self.view, lang: MainInfo.language)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GuildTableViewCellOdd", for: indexPath) as! GuildTableViewCell
+        let ser = myGuilds[indexPath.row]
+        //            cell.backIV.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+        
+        cell.titleLB.text = ser.name
+        cell.titleLB.font = UF.getFont(tag: 116, lang: MainInfo.language)
         
         return cell
-        } else
-        {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "GuildTableViewCellOdd", for: indexPath) as! GuildTableViewCell
-            let ser = myGuilds[indexPath.row]
-            
-            cell.titleLB.text = ser.name
-            
-            return cell
-        }
+        
     }
         
     

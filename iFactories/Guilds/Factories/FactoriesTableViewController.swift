@@ -62,6 +62,7 @@ class FactoriesTableViewController: UITableViewController {
         {
             cell?.backIV.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
         }
+        cell?.nameLB.font = UF.getFont(tag: (cell?.nameLB.tag)!, lang: MainInfo.language)
         return cell!
         
     }

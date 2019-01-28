@@ -9,25 +9,38 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-
+import ImageSlideshow
 class FactoriesViewController: UIViewController, Filtering{
     var stvc: FactoriesTableViewController?
     public var myFactories = NSMutableArray()
     public var myGuilds = NSMutableArray()
     public static var myGDIMs = NSMutableArray()
-    public var guildID = -1
+//    public var guildID = -1
+    public var selectedGuild: Guild?
+    @IBOutlet weak var gallerySlider: ImageSlideshow!
     
     @IBOutlet weak var loadingPB: UIActivityIndicatorView!
     @IBOutlet weak var pageTitleLB: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        UF.changeAllFonts(parent: self.view, lang: MainInfo.language)
+        
         
         populateGuild()
+        showAds()
         getGDIM()
         // Do any additional setup after loading the view.
+        if (MainInfo.IsRTL)
+        {
+            backBT.transform = CGAffineTransform(rotationAngle: CGFloat.pi )
+        }
+        
     }
-
+    @IBOutlet weak var backBT: UIButton!
+    
+    @IBAction func doBack(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -55,7 +68,7 @@ class FactoriesViewController: UIViewController, Filtering{
     func populateGuild() {
         for guild in MainInfo.Guilds
         {
-            if guild.parent_id == guildID
+            if guild.parent_id == selectedGuild?.id
             {
                 myGuilds.add(guild)
             }
@@ -124,8 +137,8 @@ class FactoriesViewController: UIViewController, Filtering{
             }
             loadingPB.isHidden = true
             
-            showFilter()
-            
+//            showFilter()
+            getShops(guilds: [], gdim: [])
             
         }
         
@@ -145,7 +158,8 @@ class FactoriesViewController: UIViewController, Filtering{
     
     
     func doFilter(g: NSMutableArray, d: NSMutableArray, i: NSMutableArray, m: NSMutableArray, guilds: NSMutableArray) {
-    myFactories.removeAllObjects()
+    
+        myFactories.removeAllObjects()
         setTableList()
         loadingPB.isHidden = false
         
@@ -155,6 +169,10 @@ class FactoriesViewController: UIViewController, Filtering{
     func populateGuildsFilter(guilds: NSMutableArray)-> NSMutableArray
     {
         let reqs = NSMutableArray()
+        let parent = NSMutableDictionary()
+        parent.setObject(selectedGuild?.id, forKey: "id" as NSCopying)
+        reqs.add(parent)
+        
         for g in guilds
         {
             if let guild = g as? Guild
@@ -248,7 +266,7 @@ class FactoriesViewController: UIViewController, Filtering{
         loadingPB.isHidden = false
         
         param.setObject(MainInfo.language, forKey: "lang" as NSCopying)
-        param.setObject(guildID, forKey: "guild" as NSCopying)
+        param.setObject(selectedGuild?.id, forKey: "guild" as NSCopying)
         param.setObject(guilds, forKey: "guilds" as NSCopying)
         param.setObject(gdim, forKey: "gdim" as NSCopying)
         
@@ -276,8 +294,6 @@ class FactoriesViewController: UIViewController, Filtering{
             
             if let data = response.data, let responseString = String(data: data, encoding: .utf8) {
                 print(responseString)
-                
-                
                 
             }
         case .success(let responseObject):
@@ -343,6 +359,24 @@ class FactoriesViewController: UIViewController, Filtering{
     
     }
 */
-    
+    func showAds()
+    {
+        var iis = [KingfisherSource]()
+        if let ads = selectedGuild?.gallery
+        {
+            for s in ads
+            {
+                let source = KingfisherSource(urlString: s)
+                iis.append(source!)
+            }
+            gallerySlider.contentScaleMode = .scaleAspectFill
+            gallerySlider.setImageInputs(iis)
+            gallerySlider.slideshowInterval = 5
+            let pageIndicator = PageControlPosition.insideScrollView
+            //        pageIndicator.currentPageIndicatorTintColor = UIColor.lightGray
+            //        pageIndicator.pageIndicatorTintColor = UIColor.black
+            gallerySlider.pageControlPosition = pageIndicator
+        }
+    }
     
 }

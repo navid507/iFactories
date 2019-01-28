@@ -36,6 +36,16 @@ class ServicesViewController: UIViewController {
 //        self.navigationController?.navigationBar.isHidden = true
         UF.changeAllFonts(parent: self.view, lang: MainInfo.language)
         
+        if (MainInfo.IsRTL)
+        {
+            backBT.transform = CGAffineTransform(rotationAngle: CGFloat.pi )
+        }
+        
+    }
+    @IBOutlet weak var backBT: UIButton!
+    
+    @IBAction func doBack(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     @objc func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
@@ -80,7 +90,15 @@ class ServicesViewController: UIViewController {
     }
     
     @IBAction func doSend(_ sender: Any) {
-        
+        if (MainInfo.userProfile == nil)
+        {
+            let alert = UIAlertController(title: "RequsetSentSuccessfully".localized(), message: "WeWillContactYou".localized(), preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { action in
+                self.navigationController?.popViewController(animated: true)
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
+        reqServices()
     }
     
     func reqServices()
@@ -148,11 +166,18 @@ class ServicesViewController: UIViewController {
     
                 if ( state == Settings.Result.Success)
                 {
-                    
+                    let alert = UIAlertController(title: "RequsetSentSuccessfully".localized(), message: "WeWillContactYou".localized(), preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { action in
+                        self.navigationController?.popViewController(animated: true)
+                    }))
+                    self.present(alert, animated: true, completion: nil)
     
                 } else
                 {
-    //                Preference.setValidUP(Settings.ValidState.InValid)
+                    let alert = UIAlertController(title: "Eroor".localized(), message: "PleaseTryAgain".localized(), preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                    
                 }
             }
         }

@@ -42,15 +42,33 @@ class CategoriesTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCell", for: indexPath) as! CategoryTableViewCell
-
-        if let cc = myCats[indexPath.row] as? Category
+        if (indexPath.row % 2 == 0)
         {
-            cell.catNameLB.text = cc.name
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCellEven", for: indexPath) as! CategoryTableViewCell
+            cell.backIV.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+            
+            if let cc = myCats[indexPath.row] as? Category
+            {
+                cell.catNameLB.text = cc.name
+            }
+       cell.catNameLB.font = UF.getFont(tag: cell.catNameLB.tag, lang: MainInfo.language)
+            return cell
+        } else
+        {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCellOdd", for: indexPath) as! CategoryTableViewCell
+            if let cc = myCats[indexPath.row] as? Category
+            {
+                cell.catNameLB.text = cc.name
+            }
+            cell.catNameLB.font = UF.getFont(tag: cell.catNameLB.tag, lang: MainInfo.language)
+            
+            return cell
         }
-        // Configure the cell...
-
-        return cell
+        
+        
+        
+       
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

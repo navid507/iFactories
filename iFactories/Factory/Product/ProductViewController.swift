@@ -11,6 +11,8 @@ import Alamofire
 import SwiftyJSON
 
 class ProductViewController: UIViewController {
+    
+    @IBOutlet weak var prdTitleLB: UILabel!
     var cat: Category?
     var ctvc: ProductsCollectionViewController?
     
@@ -19,9 +21,20 @@ class ProductViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getAllProducts()
+        prdTitleLB.text = "Products Of".localized() + (cat?.name)!
         // Do any additional setup after loading the view.
+        if (MainInfo.IsRTL)
+        {
+            backBT.transform = CGAffineTransform(rotationAngle: CGFloat.pi )
+        }
+        prdTitleLB.font = UF.getFont(tag: prdTitleLB.tag, lang: MainInfo.language)
+        
     }
+    @IBOutlet weak var backBT: UIButton!
     
+    @IBAction func doBack(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

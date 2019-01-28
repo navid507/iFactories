@@ -11,6 +11,8 @@ import DLRadioButton
 
 class FilterTableViewCell: UITableViewCell {
     @IBOutlet weak var gidmDL: DLRadioButton!
+    @IBOutlet weak var nameLB: UILabel!
+    @IBOutlet weak var imageLB: UIImageView!
     var cellIP: IndexPath?
     override func awakeFromNib() {
         super.awakeFromNib()

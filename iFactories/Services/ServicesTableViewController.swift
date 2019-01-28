@@ -49,18 +49,19 @@ class ServicesTableViewController: UITableViewController {
             cell.serviceRB.isSelected = service.state
             cell.serviceRB.tag = service.id
             cell.serviceRB.addTarget(self, action: #selector(ServicesTableViewController.doSelectService), for: .touchUpInside)
-            if (MainInfo.IsRTL)
-            {
-                cell.serviceRB.contentHorizontalAlignment = .right
-                cell.titleLB.font = UIFont(name: "B Roya", size: 16)
-//                cell.serviceRB.titleLabel?.font = UIFont(name: "B Roya", size: 16)
-            }else
-            {
-                cell.serviceRB.contentHorizontalAlignment = .left
-//                cell.serviceRB.titleLabel?.font =
-                cell.titleLB.font = UIFont(name: "System", size: 14)
-                
-            }
+//            if (MainInfo.IsRTL)
+//            {
+//                cell.serviceRB.contentHorizontalAlignment = .right
+//                cell.titleLB.font = UIFont(name: "B Roya", size: 16)
+////                cell.serviceRB.titleLabel?.font = UIFont(name: "B Roya", size: 16)
+//            }else
+//            {
+//                cell.serviceRB.contentHorizontalAlignment = .left
+////                cell.serviceRB.titleLabel?.font =
+//                cell.titleLB.font = UIFont(name: "System", size: 14)
+//
+//            }
+            cell.titleLB.font = UF.getFont(tag: cell.titleLB.tag, lang: MainInfo.language)
         }
 
 //        cell.alBT.isSelected = al.selected

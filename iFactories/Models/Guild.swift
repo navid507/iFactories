@@ -17,13 +17,20 @@ class Guild {
     var parent_id: Int = -1
     var state: Bool = true
     var selected: Bool = true
-    
+    var gallery = [String]()
     static func parseGuild(obj: JSON) -> Guild {
         let g = Guild()
         g.id = obj["id"].intValue
         g.parent_id = obj["pid"].intValue
         g.name = obj["title"].stringValue
         g.image = obj["img"].stringValue
+        let galleryJA = obj["gallery"].arrayValue
+        
+        for s in galleryJA
+        {
+            g.gallery.append( s.stringValue)
+        }
+        
         return g
     }
 

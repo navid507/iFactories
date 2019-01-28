@@ -13,6 +13,7 @@ import SwiftyJSON
 class CategoryViewController: UIViewController, OnSelectedCat {
     
     
+    @IBOutlet weak var catNameLB: UILabel!
     var factory: Shop?
     var ctvc: CategoriesTableViewController?
     public static var myCats = NSMutableArray()
@@ -20,19 +21,32 @@ class CategoryViewController: UIViewController, OnSelectedCat {
     public var selectedCat: Category?
     
     
+    @IBAction func doBack(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        UF.changeAllFonts(parent: self.view, lang: MainInfo.language)
         if (CategoryViewController.myCats.count > 0)
         {
             populateSelectedCats()
+            catNameLB.text = "Sub Categories Of".localized() + (selectedCat?.name)!
         }else{
             
             getAllCats()
             
         }
+        
          // Do any additional setup after loading the view.
+        if (MainInfo.IsRTL)
+        {
+            backBT.transform = CGAffineTransform(rotationAngle: CGFloat.pi )
+        }
+        
     }
-
+    @IBOutlet weak var backBT: UIButton!
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -132,7 +146,7 @@ class CategoryViewController: UIViewController, OnSelectedCat {
        
     }
     func onCatSelected(cat: Category) {
-        if (cat.type == 0)
+        if (cat.type == 1)
         {
             let vc = self.storyboard!.instantiateViewController(withIdentifier: "ProductViewController") as! ProductViewController
             vc.cat = cat

@@ -29,7 +29,7 @@ class MainMenu: UIViewController, RegisterDone, VerifyDone {
     
     override func viewWillAppear(_ animated: Bool) {
    //    btn.setTitle("Language Select".localized(), for: .normal)
-        setLanguage()
+//        setLanguage()
         UF.changeAllFonts(parent: self.view, lang: MainInfo.language)
     }
    

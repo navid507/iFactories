@@ -1,21 +1,41 @@
 //
-//  LnaguageViewController.swift
+//  MoreInfoViewController.swift
 //  iFactories
 //
-//  Created by navid einackchi on 7/4/18.
+//  Created by navid einackchi on 8/25/18.
 //  Copyright © 2018 sanabadai. All rights reserved.
 //
 
 import UIKit
 
-class LnaguageViewController: UIViewController {
-    @IBOutlet weak var btn: UIButton!
+class MoreInfoViewController: UIViewController {
+
+    @IBOutlet weak var imageIV: UIImageView!
+    @IBOutlet weak var nameLB: UILabel!
+    @IBOutlet weak var descLB: UILabel!
+    
+    var factory: Shop?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+UF.changeAllFonts(parent: self.view, lang: MainInfo.language)
         
-        UF.changeAllFonts(parent: self.view, lang: MainInfo.language)
+        let url = URL(string: (factory?.banner)!)
+        imageIV.kf.setImage(with: url)
+        
+        nameLB.text = factory?.name
+        let htmlData = NSString(string: (factory?.standards)!).data(using: String.Encoding.unicode.rawValue)
+        
+        let options = [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html]
+        
+        let attributedString = try! NSAttributedString(data: htmlData!, options: options, documentAttributes: nil)
+        
+        descLB.attributedText = attributedString
+        
+        descLB.backgroundColor = UIColor.white
         // Do any additional setup after loading the view.
+        
+        
         if (MainInfo.IsRTL)
         {
             backBT.transform = CGAffineTransform(rotationAngle: CGFloat.pi )
@@ -32,27 +52,7 @@ class LnaguageViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func setLangEnglish(_ sender: Any) {
-       
-            UF.doEnglish()
-        self.navigationController?.dismiss(animated: true, completion: nil)
-        
-    }
-    @IBAction func setLangRussion(_ sender: Any) {
-        
-        UF.doRussion()
-   self.navigationController?.dismiss(animated: true, completion: nil)
-    }
-    @IBAction func setLangArabic(_ sender: Any) {
-        
-        UF.doArabic()
-   self.navigationController?.dismiss(animated: true, completion: nil)
-    }
-    @IBAction func setLangPersian(_ sender: Any) {
-        
-        UF.doPersian()
-  self.navigationController?.dismiss(animated: true, completion: nil)
-    }
+
     /*
     // MARK: - Navigation
 

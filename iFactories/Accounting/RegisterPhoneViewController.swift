@@ -92,23 +92,7 @@ class RegisterPhoneViewController: UIViewController {
         param.setObject(user, forKey: "phone" as NSCopying)
         param.setObject(uid, forKey: "uniqe" as NSCopying)
         
-        /*
-         JSONObject js = new JSONObject();
-         js.put("phone", userp.getUserphone());
-         js.put("code", userp.getUserCode());
-         js.put("unique", UF.UNIQ(getApplicationContext()));
-         
-         String response = Web.send(Settings.URLs.Login, js.toString());
-         
-         
-         
-         */
-        
-        //        param.setObject(1, forKey: "remember" as NSCopying)
-        
-        
-        //        data.setObject(param, forKey: "data" as NSCopying)
-        
+     
         let url = URL(string: Settings.URLs.Register)
         var request = URLRequest(url: url!)
         

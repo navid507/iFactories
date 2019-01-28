@@ -17,16 +17,27 @@ class ProductDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        UF.changeAllFonts(parent: self.view, lang: MainInfo.language)
+        
         // Do any additional setup after loading the view.
         descLB.text = "Both this one and @TJ/@Jorge methods will work. I've gone for this way because it feels cleaner. Benefits that I can see in the other method are that you can see your looping segues in the storyboard, and that you can handle all your navigation in Both this one and @TJ/@Jorge methods will work. I've gone for this way because it feels cleaner. Benefits that I can see in the other method are that you can see your looping segues in the storyboard, and that you can handle all your navigation in Both this one and @TJ/@Jorge methods will work. I've gone for this way because it feels cleaner. Benefits that I can see in the other method are that you can see your looping segues in the storyboard, and that you can handle all your navigation in Both this one and @TJ/@Jorge methods will work. I've gone for this way because it feels cleaner. Benefits that I can see in the other method are that you can see your looping segues in the storyboard, and that you can handle all your navigation in"
     
         prdNameLB.text = product?.name
+        descLB.text = product?.desc
         let url = URL(string: (product?.image)!)
         prdIV.kf.setImage(with: url)
     
+        if (MainInfo.IsRTL)
+        {
+            backBT.transform = CGAffineTransform(rotationAngle: CGFloat.pi )
+        }
+        
     }
-
+    @IBOutlet weak var backBT: UIButton!
+    
+    @IBAction func doBack(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

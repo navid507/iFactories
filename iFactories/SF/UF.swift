@@ -24,7 +24,12 @@ class UF {
 //                tf.text = tf.text?.localized()
                 
             }else if let tf = view as? UILabel {
-               tf.font = getFont(tag: tf.tag, lang: lang)
+                tf.font = getFont(tag: tf.tag, lang: lang)
+                tf.text = tf.text?.localized()
+                
+                
+            }else if let tf = view as? UITextView {
+                tf.font = getFont(tag: tf.tag, lang: lang)
                 tf.text = tf.text?.localized()
                 
                 
@@ -39,7 +44,7 @@ class UF {
     static func getFont(tag: Int, lang: Int)-> UIFont
     {
         let fonts = UIFont.familyNames
-        let rfonts = UIFont.fontNames(forFamilyName: "B Roya")
+        let rfonts = UIFont.fontNames(forFamilyName: "Vazir")
         
         var size: CGFloat = CGFloat(tag)
         if tag > 100
@@ -47,13 +52,14 @@ class UF {
             size = CGFloat(tag - 100)
             
         }
-        var font: UIFont = UIFont(name: "BRoyaBold", size: 16)!
+        var font: UIFont = UIFont(name: "Vazir-Bold", size: 16)!
         if (tag < 100)
         {
             
         switch lang{
         case Settings.Language.Persian:
-            font = UIFont(name: "BRoya", size: size)!
+            font = UIFont(name: "Vazir-Medium", size: size)!
+            
             break
         case Settings.Language.English:
             font = UIFont.systemFont(ofSize: size-2)
@@ -71,7 +77,7 @@ class UF {
         }else{
             switch lang{
             case Settings.Language.Persian:
-                font = UIFont(name: "BRoyaBold", size: size)!
+                font = UIFont(name: "Vazir-Bold", size: size)!
                 break
             case Settings.Language.English:
                 font = UIFont.boldSystemFont(ofSize: size-2)

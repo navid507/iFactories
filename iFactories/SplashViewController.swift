@@ -61,7 +61,7 @@ class SplashViewController: UIViewController {
     func doAccLogin()
     {
         let valid = Preference.getRegState()
-        if (valid != Settings.Register_State.Login || valid != Settings.Register_State.OK)
+        if (valid != Settings.Register_State.Login && valid != Settings.Register_State.OK)
         {
             self.isAccLogin = true
             return
